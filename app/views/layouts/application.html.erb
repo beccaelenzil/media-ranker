@@ -10,9 +10,17 @@
   </head>
   <header>
   <h1>Becca's Media Ranker</h1>
-  <nav><%=link_to "|-Homepage-|", root_path %> <%=link_to "|-View All Works-|", works_path %> <%=link_to "|-Add New Work-|", new_work_path %></nav>
+  <nav><%=link_to "|-Homepage-|", root_path %> <%=link_to "|-View All Works-|", works_path %> <%=link_to "|-Add New Work-|", new_work_path %>
+  <%=link_to "|-Login-|", login_path %> <%=link_to "|-Logout-|", logout_path, method: :post %> <%=link_to "|-Current User-|", current_user_path %></nav>
   </header>
   <body>
+    <section class="flash">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= message %></div>
+      <% end %>
+    </section>
+
+
     <%= yield %>
   </body>
   <footer>© Becca 2019 </footer>

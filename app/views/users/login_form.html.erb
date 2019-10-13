@@ -1,0 +1,10 @@
+<%= form_with model: @user, url: login_path do |f| %>
+
+<p>Please provide a username to login:</p>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.submit "Login", class: "login-button" %>
+
+<% end %>
