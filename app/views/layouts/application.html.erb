@@ -8,8 +8,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+  <h1>Becca's Media Ranker</h1>
+  <nav><%=link_to "|-Homepage-|", root_path %> <%=link_to "|-View All Works-|", works_path %> <%=link_to "|-Add New Work-|", new_work_path %></nav>
+  </header>
   <body>
     <%= yield %>
   </body>
+  <footer>© Becca 2019 </footer>
 </html>
