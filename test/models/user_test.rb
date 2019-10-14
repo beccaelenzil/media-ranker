@@ -27,6 +27,6 @@ describe User do
 
       expect(result).must_equal false
     end
-
   end
+  
 end
