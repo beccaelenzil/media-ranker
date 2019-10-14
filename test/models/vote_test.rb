@@ -2,8 +2,8 @@ require "test_helper"
 
 describe Vote do
   before do
-    @user = User.new(username: "Becca")
-    @work = Work.new(
+    @user = User.create(username: "Becca")
+    @work = Work.create(
       title: "Hello World!",
       creator: "Becca",
       description: "blah blah blah",
@@ -11,7 +11,7 @@ describe Vote do
       category: "book"
     )
 
-    @work2 = Work.new(
+    @work2 = Work.create(
       title: "Hello World! How are you?",
       creator: "Becca",
       description: "blah blah blah",
@@ -59,7 +59,7 @@ describe Vote do
     describe "validations" do
       it "a user cannot vote on a work twice" do
         vote = Vote.new(user_id: @user.id, work_id: @work.id)
-        vote.save
+        vote.save!
         vote2 = Vote.new(user_id: @user.id, work_id: @work.id)
         
         result = vote2.valid?
@@ -68,14 +68,14 @@ describe Vote do
       end
 
       it "a user can vote on 2 different works" do
+
         vote = Vote.new(user_id: @user.id, work_id: @work.id)
-        vote.save
+        vote.save!
         vote2 = Vote.new(user_id: @user.id, work_id: @work2.id)
 
         result = vote2.valid?
 
         expect(result).must_equal true
-        
       end
 
     end
