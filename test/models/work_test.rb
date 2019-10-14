@@ -2,16 +2,11 @@ require "test_helper"
 
 describe Work do
   before do
-    @work = Work.new(
-      title: "Hello World!",
-      creator: "Becca",
-      description: "blah blah blah",
-      publication_year: 2019,
-      category: "book"
-    )
+    @work = works(:hello_world_book_by_becca)
   end
 
   describe "validations" do
+
     it "can create a valid book" do
       result = @work.valid?
 
@@ -27,30 +22,26 @@ describe Work do
     end
 
     it "cannot create a book with the same title as another book" do
+      @work.save!
+
       @work2 = Work.new(
         title: "Hello World!",
-        creator: "Sarah",
-        description: "blahdy blah",
+        creator: "Sara",
+        description: "blah blah blah",
         publication_year: 2019,
         category: "book"
       )
 
-      @work.save
       result = @work2.valid?
 
       expect(result).must_equal false
     end
 
     it "can create a movie with the same title as a book" do
-      @work2 = Work.new(
-        title: "Hello World!",
-        creator: "Sarah",
-        description: "blahdy blah",
-        publication_year: 2019,
-        category: "movie"
-      )
+      @work.save!
+      @work2 = @work.clone
+      @work2.category = "movie"
 
-      @work.save
       result = @work2.valid?
 
       expect(result).must_equal true
@@ -58,6 +49,7 @@ describe Work do
 
     it "cannot create a work without a category" do
       @work.category = nil
+
       result = @work.valid?
 
       expect(result).must_equal false

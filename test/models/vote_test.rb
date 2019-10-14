@@ -3,13 +3,7 @@ require "test_helper"
 describe Vote do
   before do
     @user = User.create(username: "Becca")
-    @work = Work.create(
-      title: "Hello World!",
-      creator: "Becca",
-      description: "blah blah blah",
-      publication_year: 2019,
-      category: "book"
-    )
+    @work = works(:hello_world_book_by_becca)
 
     @work2 = Work.create(
       title: "Hello World! How are you?",
