@@ -25,6 +25,17 @@ class Work < ApplicationRecord
     end
     return work_category_hash
   end
+
+  def self.top_ten(category)
+    work_category_hash = organize_work_by_category
+    n = work_category_hash[category].length
+    if n > 10
+      work_category_hash[category].sample(10)
+
+  end
+
+
+
 end
 
   
