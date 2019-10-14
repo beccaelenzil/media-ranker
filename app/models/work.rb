@@ -1,4 +1,16 @@
 class Work < ApplicationRecord
+  # relations
+  has_many :votes
+
+  # validations
+
+  CATEGORIES = ["book", "album", "movie"]
+
+  validates :category, presence: true,
+  inclusion: {in: CATEGORIES}
+
+  validates :title, presence: true, uniqueness: {scope: :category}
+
   def self.organize_work_by_category
     works = Work.all
     work_category_hash = {}
