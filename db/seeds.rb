@@ -18,6 +18,7 @@ CSV.foreach(WORK_FILE, :headers => true) do |row|
   work.creator = row['creator']
   work.publication_year = row['publication_year']
   work.description = row['description']
+  work.vote_count = row['vote_count']
   successful = work.save
   if !successful
     work_failures << work

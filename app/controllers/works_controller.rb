@@ -65,6 +65,28 @@ class WorksController < ApplicationController
     redirect_to works_path
   end
 
+  def upvote
+    work_id = params[:id]
+    user_id = session[:user_id]
+    @work = Work.find_by(id: work_id)
+
+    if @work.nil?
+      head :not_found
+      return
+    end
+
+    if user_id.nil?
+      flash[:warning] = "you must be logged in to vote"
+    end
+
+    vote = Vote.new(user_id: user_id, work_id: work_id)
+
+    @work.upvote
+    @work.save
+
+    redirect_to works_path
+  end
+
   private
 
   def work_params

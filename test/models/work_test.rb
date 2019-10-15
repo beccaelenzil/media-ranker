@@ -108,4 +108,27 @@ describe Work do
     end
   end
 
+  describe "top ten" do
+    it "provide 10 items if there are 10 or more items" do
+    end
+
+    it "provide n items if there are fewer than 10 items in that category" do
+    end
+
+    it "provides 0 items if there are no items in that category" do
+    end
+    
+  end
+
+  describe "chose featured work" do
+    it "is nil if there are no works" do
+    end
+
+    it "chooses the highest ranked work" do
+    end
+
+    it "chooses randomly between multiple works that are tied for highest" do
+    end
+  end
+
 end

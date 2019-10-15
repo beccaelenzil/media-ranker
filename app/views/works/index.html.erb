@@ -10,7 +10,8 @@
           <th>Title</th>
           <th>Created By</th>
           <th width=100>Published</th>
-          <!--<th width=100>Upvote</th>-->
+          <th>Vote Count</th>
+          <th width=100>Upvote</th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +21,8 @@
             <td><%= link_to work.title, work_path(work) %></td>
             <td><%= work.creator %></td>
             <td><%= work.publication_year %></td>
-            <!--<td><%%= link_to "Upvote", upvote_path(work), class: "btn btn-primary", method: :post %></td>-->
+            <td><%= work.vote_count %></td>
+            <td><%= link_to "Upvote", upvote_path(work), class: "btn btn-primary", method: :post %></td>
           </tr>
         <% end %>
       </tbody>

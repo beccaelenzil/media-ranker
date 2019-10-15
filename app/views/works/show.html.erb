@@ -3,5 +3,6 @@
   <p>Created by: <%= @work.creator %></p>
   <p>Published: <%= @work.publication_year %></p>
   <p><%= @work.description %></p>
+  <p>Vote Count: <%= @work.vote_count %></p>
   <p><%= link_to "|-Update This Work-|", edit_work_path(@work)%> <%= link_to "|-Delete This Work-|", work_path(@work), method: :delete%></p>
 </section>

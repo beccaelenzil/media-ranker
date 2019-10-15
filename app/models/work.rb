@@ -23,27 +23,53 @@ class Work < ApplicationRecord
         work_category_hash[work.category] << work
       end
     end
-    return work_category_hash
+
+    work_category_hash_alpha = {}
+    work_category_hash.each do |key, value|
+      work_category_hash_alpha[key] = alpha(value)
+    end
+
+    return work_category_hash_alpha
   end
 
   def self.top_ten(category)
     work_category_hash = organize_work_by_category
+
     if work_category_hash[category]
-      n = work_category_hash[category].length
+      alphabetized_works = work_category_hash[category]
+      n = alphabetized_works.length
     else
       work_category_hash[category] = []
+      alphabetized_works = []
       n = 0
     end
 
+    sorted_by_vote_count_works = alphabetized_works.sort_by do |work|
+      work.vote_count
+    end
+
     if n > 10
-      return work_category_hash[category].sample(10)
+      return sorted_by_vote_count_works.reverse[0,10]
     else
-      return work_category_hash[category]
+      return sorted_by_vote_count_works.reverse
     end
   end
 
   def self.choose_featured_work
-    return Work.all.sample
+    return Work.order(vote_count: :desc).first
+  end
+
+  def upvote
+    self.vote_count += 1
+  end
+
+  private
+  def self.alpha(works)
+    alpha_works = works.sort_by do |work|
+      work.title
+    end
+
+    return alpha_works.reverse
   end
 
 end
