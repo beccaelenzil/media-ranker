@@ -28,13 +28,23 @@ class Work < ApplicationRecord
 
   def self.top_ten(category)
     work_category_hash = organize_work_by_category
-    n = work_category_hash[category].length
-    if n > 10
-      work_category_hash[category].sample(10)
+    if work_category_hash[category]
+      n = work_category_hash[category].length
+    else
+      work_category_hash[category] = []
+      n = 0
+    end
 
+    if n > 10
+      return work_category_hash[category].sample(10)
+    else
+      return work_category_hash[category]
+    end
   end
 
-
+  def self.choose_featured_work
+    return Work.all.sample
+  end
 
 end
 

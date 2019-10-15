@@ -1,1 +1,29 @@
-<!--<%= link_to "View All Works", works_path %> -->
+<%featured_work = Work.choose_featured_work %>
+<h1>Featured Work: <%= link_to featured_work.title, work_path(featured_work.id) %> </h1>
+<!--this is a good place to use partial views-->
+<article class="top-media-container">
+  <div class="Top Books">
+  <h2>Top Books</h2>
+    <ol>
+    <% Work.top_ten("book").each do |work| %>
+      <li><%= link_to work.title, work_path(work.id) %></li>
+    <%end%>
+    </ol>
+  </div>
+  <div class="Top Movies">
+  <h2>Top Movies</h2>
+    <ol>
+    <% Work.top_ten("movie").each do |work| %>
+      <li><%= link_to work.title, work_path(work.id) %></li>
+      <%end%>
+    </ol>
+  </div>
+  <div class="Top Albums">
+  <h2>Top Albums</h2>
+    <ol>
+      <% Work.top_ten("album").each do |work| %>
+        <li><%= link_to work.title, work_path(work.id) %></li>
+        <%end%>
+    </ol>
+  </div>
+</article>

@@ -14,12 +14,21 @@
  *= require_self
  */
 
- body {
+body {
    background-color: lightsteelblue
  }
 
- footer, header {
+footer, header {
    background-color: lightseagreen;
    padding: 20px;
  }
+
+.top-media-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.nav-bar {
+  padding: 10px;
+}
  
