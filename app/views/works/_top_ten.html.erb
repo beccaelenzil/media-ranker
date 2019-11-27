@@ -1,0 +1,10 @@
+<div class="top-ten">
+  <h2>Top <%=works_name%></h2>
+    <ol>
+    <% Work.top_ten(work_name).each do |work| %>
+      <li><h2><%= link_to work.title, work_path(work.id) %></h2></li>
+      <ul><li><%= number_badge(work.vote_count) %></li></ul>
+    <%end%>
+  </ol>
+</div>
+

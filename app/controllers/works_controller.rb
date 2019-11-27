@@ -81,8 +81,15 @@ class WorksController < ApplicationController
 
     vote = Vote.new(user_id: user_id, work_id: work_id)
 
-    @work.upvote
-    @work.save
+    if vote.valid?
+      @work.upvote
+      @work.votes << vote
+      @work.save
+    else
+      flash.now[:failure] = vote.errors.messages.first
+    end
+
+    
 
     redirect_to works_path
   end

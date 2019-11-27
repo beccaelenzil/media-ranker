@@ -1,33 +1,10 @@
+<!--Featured Work-->
 <%featured_work = Work.choose_featured_work %>
 <h1>Featured Work: <%= link_to featured_work.title, work_path(featured_work.id) %> </h1>
-<!--this is a good place to use partial views-->
+
+<!--Top Ten-->
 <article class="top-media-container">
-  <div class="Top Books">
-  <h2>Top Books</h2>
-    <ol>
-    <% Work.top_ten("book").each do |work| %>
-      <li><h2><%= link_to work.title, work_path(work.id) %></h2></li>
-      <ul><li>Vote Count: <%= work.vote_count%></li></ul>
-    <%end%>
-    </ol>
-  </div>
-  <div class="Top Movies">
-  <h2>Top Movies</h2>
-    <ol>
-    <% Work.top_ten("movie").each do |work| %>
-      <li><h2><%= link_to work.title, work_path(work.id) %></h2></li>
-      
-      <ul><li>Vote Count: <%= work.vote_count%></li></ul>
-      <%end%>
-    </ol>
-  </div>
-  <div class="Top Albums">
-  <h2>Top Albums</h2>
-    <ol>
-      <% Work.top_ten("album").each do |work| %>
-        <li><h2><%= link_to work.title, work_path(work.id) %></h2></li>
-      <ul><li>Vote Count: <%= work.vote_count%></li></ul>
-        <%end%>
-    </ol>
-  </div>
+  <%= render partial: "top_ten", locals: {works_name: "Books", work_name: "book"} %>
+  <%= render partial: "top_ten", locals: {works_name: "Albums", work_name: "album"} %>
+  <%= render partial: "top_ten", locals: {works_name: "Movies", work_name: "movie"} %>
 </article>
